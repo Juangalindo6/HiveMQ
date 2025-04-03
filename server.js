@@ -5,7 +5,7 @@ const sound = require('sound-play');
 const path = require('path');
 
 // Ruta absoluta de la canción
-const filePath = path.join(__dirname, 'cancion.mp3');
+const filePath = path.join(__dirname, './assets/cancion.mp3');
 
 sound.play(filePath)
   .then(() => console.log('Reproduciendo cancion.mp3...'))

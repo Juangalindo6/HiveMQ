@@ -1,0 +1,10 @@
+{
+    "scripts": {
+        "dev": "node server.js"
+    },
+    "dependencies": {
+        "mqtt": "^5.10.4",
+        "node-mp3-player": "^1.0.3",
+        "sound-play": "^1.1.0"
+    }
+}
