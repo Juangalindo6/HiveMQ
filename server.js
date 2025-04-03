@@ -2,7 +2,7 @@ const mqtt = require('mqtt');
 const sound = require('sound-play');
 const path = require('path');
 
-const filePath = path.join(__dirname, 'cancion.mp3');
+const filePath = path.join(__dirname, './assets/cancion.mp3');
 let segundos = 0;
 let timer = null;
 
@@ -13,18 +13,19 @@ function iniciarTemporizador(client) {
     segundos++;
     console.log(`Tiempo transcurrido: ${segundos} segundos`);
 
-    if (segundos === 1) enviarMensaje(client, "Secuencia 1");
-    if (segundos === 5) enviarMensaje(client, "Secuencia 2");
-    if (segundos === 10) enviarMensaje(client, "Secuencia 3");
+    if (segundos === 1) enviarMensaje(client, "cubo1", "Secuencia 1");
+    if (segundos === 3) enviarMensaje(client, "cubo2", "Mensaje solo para cubo2");
+    if (segundos === 5) enviarMensaje(client, "cubo1", "Secuencia 2");
+    if (segundos === 7) enviarMensaje(client, "cubo2", "Otro mensaje para cubo2");
+    if (segundos === 10) enviarMensaje(client, "cubo1", "Secuencia 3");
 
   }, 1000);
 }
 
 // Función para enviar mensajes a los tópicos
-function enviarMensaje(client, mensaje) {
-  client.publish("cubo1", mensaje);
-  client.publish("cubo2", mensaje);
-  console.log(`Mensaje enviado: "${mensaje}" a cubo1 y cubo2`);
+function enviarMensaje(client,topico, mensaje) {
+  client.publish(topico, mensaje);
+  console.log(`Mensaje enviado: "${mensaje}" a ${topico}`);
 }
 
 // Configuración de MQTT
